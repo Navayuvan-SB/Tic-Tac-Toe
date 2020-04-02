@@ -54,17 +54,15 @@ class Game extends React.Component {
         }
       ],
       xIsNext: true,
-      stepNumber: 0,
+      stepNumber: 0
     };
   }
 
   jumpTo(step) {
-
     this.setState({
       stepNumber: step,
-      xIsNext: (step % 2) === 0,
+      xIsNext: step % 2 === 0
     });
-
   }
 
   handleClick(i) {
@@ -96,7 +94,12 @@ class Game extends React.Component {
 
       return (
         <li key={move}>
-          <button onClick={() => this.jumpTo(move)}> {desc} </button>
+          <button
+            className="timeline-button"
+            onClick={() => this.jumpTo(move)}
+          >
+            {desc}
+          </button>
         </li>
       );
     });
@@ -108,14 +111,19 @@ class Game extends React.Component {
       status = "Next Player : " + (this.state.xIsNext ? "X" : "O");
     }
 
+    const title = "Tic Tac Toe";
+
     return (
       <div className="game">
+
+        <h1 className="title">{ title }</h1>
+
         <div className="game-board">
           <Board squares={current.squares} onClick={i => this.handleClick(i)} />
         </div>
         <div className="game-info">
-          <div>{ status }</div>
-          <ol>{ moves }</ol>
+          <div>{status}</div>
+          <ol>{moves}</ol>
         </div>
       </div>
     );
